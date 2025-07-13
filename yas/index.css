@@ -1,0 +1,192 @@
+
+:root {
+    --ground-height: 40px;
+    --player-width: 40px;
+    --player-height: 60px;
+    --obstacle-width: 20px;
+
+    --background-color: #0c0c24;
+    --ground-color: #2c2c44;
+    --player-color: #90ee90; /* LightGreen */
+    --obstacle-color: #ff4500; /* OrangeRed */
+    --text-color: #f0f0f0;
+    --shadow-color: rgba(255, 255, 255, 0.7);
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden; /* Prevent scrollbars in full screen */
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+}
+
+#game-container {
+    width: 100%;
+    height: 100%;
+    background: var(--background-color);
+    position: relative;
+    overflow: hidden;
+}
+
+#ground {
+    width: 100%;
+    height: var(--ground-height);
+    background-image: repeating-linear-gradient(
+        to right,
+        var(--ground-color),
+        var(--ground-color) 20px,
+        #3c3c54 20px,
+        #3c3c54 40px
+    );
+    background-size: 80px 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: scrollGround 1s linear infinite;
+    z-index: 1;
+}
+
+#score {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: 100;
+}
+
+#player {
+    width: var(--player-width);
+    height: var(--player-height);
+    background-color: var(--player-color);
+    position: absolute;
+    bottom: var(--ground-height);
+    left: 10%; /* Use relative positioning for responsiveness */
+    z-index: 50;
+    border-radius: 5px 5px 0 0;
+}
+
+.jump {
+    animation: jump 0.6s linear;
+}
+
+@keyframes jump {
+    0%   { bottom: var(--ground-height); }
+    50%  { bottom: calc(var(--ground-height) + 120px); }
+    100% { bottom: var(--ground-height); }
+}
+
+.obstacle {
+    width: var(--obstacle-width);
+    /* height is set dynamically in JS */
+    background-color: var(--obstacle-color);
+    position: absolute;
+    bottom: var(--ground-height);
+    left: 100%; /* Start off-screen */
+    z-index: 50;
+    border-radius: 3px;
+}
+
+.message-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 200;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 2.5rem; /* Larger text for full-screen */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.message-container.hidden {
+    display: none;
+}
+
+.final-score {
+    font-size: 1.8rem; /* Larger text for full-screen */
+    margin-top: 1rem;
+}
+
+#jump-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    background-color: var(--player-color);
+    color: var(--background-color);
+    border: 3px solid var(--background-color);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    z-index: 150;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#jump-button:active {
+    transform: scale(0.95);
+    background-color: #76c876;
+}
+
+#start-button {
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: inherit;
+    color: var(--background-color);
+    background-color: var(--player-color);
+    border: 3px solid var(--background-color);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    user-select: none;
+    -webkit-user-select: none;
+    text-transform: uppercase;
+}
+
+#start-button:active {
+    transform: scale(0.95);
+    background-color: #76c876;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes scrollGround {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -80px 0;
+    }
+}

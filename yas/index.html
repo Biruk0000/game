@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Space Jumper</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0c0c24">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <main id="app">
+        <div id="game-container">
+            <div id="score" class="hidden">0</div>
+            <div id="player"></div>
+            <div id="ground"></div>
+            <button id="jump-button" class="hidden" aria-label="Jump">JUMP</button>
+            <div class="message-container">
+                <p class="message">Space Jumper</p>
+                <p class="final-score"></p>
+                <button id="start-button">Start Game</button>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
